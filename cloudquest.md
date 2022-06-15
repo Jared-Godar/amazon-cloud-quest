@@ -413,4 +413,29 @@
     - 4-16 TB
   - Throughput Optimized
     - st1
-    - sc1 
+    - sc1
+
+---
+
+## Computing Solutions
+
+- Upgrade EC2 Instance to larger compute and memory balanced solution
+
+![Lab3](images/lab3-diagram.png)
+
+- Connect to EC2 instance in multiple ways
+  - EC2 Connect from AWS Console
+  - Session Manager
+  - Metadata details in browser
+  - SSH term clients
+
+### Lab Goals
+
+- [ ] Browse Instance Attributes
+- [ ] Learn about instance families
+- [ ] Connect to an instance and check logs
+- [ ] Start and stop an instance
+- [ ] Change instance type to m4.large
+
+---
+
