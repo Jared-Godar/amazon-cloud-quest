@@ -439,3 +439,121 @@
 
 ---
 
+## Lab 4 - Networking Concepts
+
+- Virtual Private Cloud
+- Routing Tables
+- Internet Gateway
+- Security Group
+- Customize network security configuration
+
+![Lab4](images/lab4.png)
+
+- Common network architecture configuration that only allows traffic to public AWS resources
+- Web and database servers are deployed in a VPC
+- Web server is deployed inside a publicly exposed subnet and assigned a public IP to make it accessible from the internet
+- Security Group for the server configured to allowed access through port 80, default for http
+- Route table in the VPS to allow internet traffic via an Internet Gateway to public subnet only
+- Database server is in a private subnet that does not have a route table that allows access from the internet
+
+### Videos
+
+#### Amazon VPC OVerview
+
+- Private cloud within AWS cloud
+- Logically isolated
+- Launch AWS resources in virtual network
+- Dedicated to AWS account
+- Comes with Default VPC
+- Can launch into default right away
+- Complete control
+- Assign a range of private IPv4/6 addresses
+- IPv4 by default
+- Can use own IP prefixes
+- Add one or more subnets in each AZ
+- Partition of address range
+- 1024 IP addresses, 4 subnets - 251 each
+- Up to 5 VPCs per region by default
+- Benefits
+  - Management console to easily create and manage
+  - Customizable
+    - Public
+    - Private
+    - Connection to your data center
+  - Secure
+    - Security Groups
+    - NACLs
+    - Filter at group and subnet levels
+    - Multiple layers
+
+#### VPC -Internet Connectivity
+
+- Internate gateway
+  - Horizontally scaled
+  - Redundant
+  - Available
+  - IPv4/6
+  - Attach IG to VPC
+  - Add route to route table pointing to gateway
+  - Elastic IPs are fixed
+  - NACL/Security Group configuration
+  - NAT gateway (IPv4 Only)
+    - Network address translation
+  - Egress only Internet Gateway (IPv6)
+  - Allow outbound, but not inbound traffic
+  - Stateful
+  - Updates, patches, etc.
+
+#### VPC Concepts
+
+- CIDR block /16-/28 of private IP addresses
+- 0.0.0.0/0
+- Primary CIDR
+- Secondary
+- Private are local addresses in your VPC
+- Communitate within VPC
+- Create public IPv4/6 public address to access over the internet
+- CIDR blocks cannot overlap
+- Route Table
+  - Customize
+  - Set of rules
+  - Direct network traffic
+  - Each subnet must be associated with a route table
+  - Public
+    - Internet connectivity
+    - Internet Gateway - inbound and outbound
+  - Private
+    - No internet gateway
+
+#### VPC Security
+
+- Network Access Control Lists (NACL)
+  - Firewall
+  - Default NACL
+    - Allows inbound/outbound
+  - Custom NACL
+    - Denies until allow rules added
+  - Stateless
+  - Numbered list of rules
+  - Evaluated in order
+  - Evaluation ends as soon as match is found
+- Security Group
+  - Virtual firewall at instance level
+  - Denies all inbound and allows all outbound by default
+  - No deny rules required
+  - Whitelist, allow-only rules
+  - All rules are evaluates
+  - Can be restricted by type, source, port range, etc.
+  - Web tier
+  - Application tier
+  - Database Tier
+  - Chained groups
+
+### Lab Goals
+
+- [ ] Change web server subnet from private to public
+- [ ] Configure a Security Group to allow HTTP traffic from internet
+- [ ] Change the SG rules to allow traffic over port 3306 into the DB Server
+
+---
+
