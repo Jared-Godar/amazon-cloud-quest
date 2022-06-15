@@ -549,7 +549,7 @@
   - Database Tier
   - Chained groups
 
-### Lab Goals
+### Lab Goals IV
 
 - [ ] Change web server subnet from private to public
 - [ ] Configure a Security Group to allow HTTP traffic from internet
