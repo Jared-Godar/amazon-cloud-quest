@@ -834,4 +834,201 @@
 - Autoscale
 - Single digit ms latency
 - Metadata
-- 
+
+![l7](images/lab7.png)
+
+- DynamoDB
+  - Flexible schema
+  - Each row can have a number of attributes
+  - Key-value & document d
+  - Single-digit ms performance at any scale
+  - Low response time
+- Primary Keys
+  - Partition key only
+  - Partition key and sort key
+- Getitem operation
+  - Specify Primary key
+  - Can retrieve entire item or a subset of attributes
+- Query
+  - Provide partition key value
+  - Apply a condition to the sort key
+- Flexible Schema
+  - New attribute to specific item after create
+
+### DynamoDB Overview
+
+- Key Value and document DB
+- Fully Managed
+- Multiregion
+- Multimaster
+- Durable
+- 10T r/day
+- 20M r/s
+- Backup & Restore
+Tables of any size
+Horizontal scaling
+Flexible Schema
+- DynamoDB Accelerator
+  - DAX
+  - us latency
+- Global tables replicate over multiple regions
+- Capture logs
+- Provisioned
+  - Read/Write capacity specified
+  - Auto-Scaling
+- On-demand
+  - Less predictable workloads
+- Works with Lambda triggers
+  - Send notification
+  - Initiate workflow
+- Encryption at rest
+- KMS
+- ACID transactions
+- Point in time recovery (PITR)
+- Continuous backups 1s-35 days
+- On-demand backup and restore
+- Corporate and Governmental regulation
+
+### NoSQL
+
+- Non-relational
+- No fixed schema
+- no structured tables
+- Purpose Built
+- Mobile
+- Web
+- Gaming
+- Large Data Volume
+- Low Latency
+- High performance
+- Flexbile
+- Schema
+  - JSON Document
+  - Attributes in single document
+  - Intuitive
+  - Horizontable scalable
+- Flexibility
+- Scales out on clusters of hardware
+- High Performance
+  - Parallel processing across nodes and servers
+- Models
+  - Key-value
+    - Highly partitionable
+    - Gaming
+    - Adtech
+    - Iot
+  - Document
+    - JSON
+    - Catalogs
+    - User profiles
+    - DocumentDB with MongoDB
+  - Graph
+    - Relationships between entities
+    - Social Networking
+    - Recommendation Engine
+    - Knowledge graph
+    - Fraud Detection
+    - Amazon Naptune
+      - Neo4J
+      - Grph
+  - In Memory
+    - Leaderboards
+    - Session stores
+    - Real-time analytics
+    - Handles traffic spikes
+    - Amazon ElastiCache
+      - Memcached
+      - Redis
+    - Amazon DynamoDB Accelerator (DAX)
+  - Search
+    - Search Data Content
+    - Indexes
+    - Categorize
+    - Search
+    - Text
+    - Log
+    - Analysis
+    - Amazon OpenSearch Service
+
+### SQL vs. NoSQL
+
+| App             | SQL                                            | No SQL                                              |
+| :-------------- | :--------------------------------------------- | :-------------------------------------------------- |
+| Worklaods       | Transactional OLAP                             | Key-Value, Document, Graphy, In memory Search       |
+| Data Model      | Tables rows                                    | Various                                             |
+| Acid properties | Atomicity, Consistency, Isolation Durability   | ACID within aws account and region                  |
+| Performance     | Disk system, qerries, Indexes, Table structure | Hardware cluster size, Network latency, application |
+| Scale           | Increase compute                               | Partitionable, distributed, increased throughput    |
+| APIs            | SWL queries                                    | Object-based APIs, Partition keys                   |
+
+### Create a NoSQL Table
+
+- Items / attributes
+- Primary key - uniqueID
+- Partition key - partition for scale
+- Sort key - Additional sorting
+- Enter table name
+- Enter partition key
+- Enable auto scaling
+- Create Table
+- Add data
+- Delete one item at a time by key
+- Individual read/write in parallel
+
+### Scans Overview
+
+- All the attributes for every item
+- Use filter to limit results
+- Can use CLI
+  - use partition parameter
+  - Filter expression
+  - Specify any attributes
+- Limit umber of items in results set (limit)
+- Count - multiple scans
+- Read consistency
+- Consisten read parameter - strongly consistent read consumes 2x RCUs
+
+### Scans Features
+
+- Paginate results
+- Parallel scan
+  - Multiple workers / threads
+
+#### Queries Overview
+
+- Qery any table or secondary index by primary ley
+- Partition key attribute
+- CLI
+
+```txt
+dynamodb query \
+  --table-name {name} \
+  --key-condition-expression "Atist = :a and SongTitle = :t" \
+  --filter-expression "Year > :yyyy \
+  --expression-sttribute walues '{
+      "a:" {"S":Artist2"},
+      "t:" {"S":"SongB"},
+      ":yyyy": {"N":"2018},
+  }'
+  ```
+
+#### Queries Features
+
+- Limit number of items
+- Count the items in the results
+- May need multiple queries to get all results
+- Consumes Read Capacity Units (RCUs)
+- Provisioned read capacity
+- Calculated on item size
+- Read consistency
+  - Consistent read parameter
+- Pagination
+  - Pages of data <= 1MB
+  - Debug mode - last evaluated key
+
+- [ ] Create an Amazon DynamoDB table
+- [ ] Enter a record
+- [ ] Search by partition ID
+- [ ] Create a new user item with a unique ID
+- [ ] Add new attribute named rating (Number)
+
