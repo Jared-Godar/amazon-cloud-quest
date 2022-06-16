@@ -557,3 +557,70 @@
 
 ---
 
+## Cloud Economics
+
+- Pay for what you use
+- Horizontal scaling
+  - Add more servers when you need them
+- Scale Vertically
+  - Increase computing power on one or more instances
+- AWS Pricing Calculator
+  - Prepare price estimate
+
+![lab5](images/lab5.png)
+
+- AWS enables you to take control of costs and continuously optimize spend
+- Only pay for the resources you actually need
+- Using a static number of resources as demand fluctuates can overburden servers resulting in underserved customers
+- Cost inefficiencies occur by spending money on unused compute capacity
+- Provision the services you need and only pay for what you use
+- Infrastructure matches demand
+- Matching infrastructure to demand utilizes a concept called scaling
+- As demand increases, your services will be able to scale out horizontally
+  - Adding more resources, ie EC2 instances, to a system
+- As demand decreases, horizontally scale to decrease resources in a system
+- **AWS Pricing Calculator** you can get estimate with no commitment and explore AWS services and pricing for architecture needs
+
+### AWS Pricing Overview
+
+- Pay as you go for over 160 cloud services
+- Pay only for the services you need for as long as you use them
+- No long-term contract
+- No complex licensing
+- Like a utility
+  - Pay for what you consume
+  - No additional costs or termination fees
+- AWS Pricing Calculator
+  - Explore Services
+  - Estimate
+  - Your use cases
+  - Make informed decisions about using AWS
+- How to pay
+  - Easily adapt to changing needs
+  - No overcommitting budgets
+  - Improving responsiveness
+- Commit to save
+  - Compute
+  - Machine Learning
+  - Savings Plans
+  - Commitment to use (1/3 year)
+  - Dollars per hour
+  - Service or category of services
+- Pay less by using more
+  - Volume-based discount
+  - Tiered pricing
+    - S3
+  - Reduced cost per Gb
+- Single instance or dozens of services
+- Model solutions before building
+- Price pints
+- Instance types
+- Contract terms
+- Estimate
+- Transparent pricing
+- Save and share
+- Export to CSV
+
+- [ ] Create an estimate of an architecture using the AWS Pricing Calculator
+- [ ] Change the EC2 instance type to t2.micro and generate a new price estimate URL
+
