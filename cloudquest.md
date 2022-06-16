@@ -624,3 +624,214 @@
 - [ ] Create an estimate of an architecture using the AWS Pricing Calculator
 - [ ] Change the EC2 instance type to t2.micro and generate a new price estimate URL
 
+---
+
+## Databases
+
+- AWS managed relational database, Amazon RDS, removes the operational burden of patching and managing underlying infrastructure
+- Can provide routine backups
+- Choose retention period
+- Can deploy in multiple AZs
+  - Disaster, automatic failover
+  - Data replicated synchronously
+  - No Down time
+  - Multi AZ - high availability, independent of performance
+- For read-intensive workloads, you can use a read replica
+  - Same data as primary, but only allow read
+  - Direct queries there and your primary db is free to do more write operations
+
+![l6](images/lab6.png)
+
+- Use Amazon RDS
+  - No need for manual DB provisioning and maintenance
+- Automates backups, snapshots, and host replacement
+- Multi AZ deployment
+  - High availability
+  - Standby replica in different AZ
+- Read replica deployed to offload read traffic from primary DB to increase performance
+
+### RDS Overview
+
+- Managed relational database service
+- Easy to setup, operate, and scale
+- Autoate admin tasks
+  - Provisioning
+  - Setup
+  - Patching
+  - Backups
+- Cost efficient
+- Resizable capacity
+- Types
+  - Aurora
+  - PostgreSQL
+  - MySQL
+  - MariaDB
+  - Oracle
+  - Swl Server
+- AWS Database Migration Service
+  - Migrate and replicate existing DBs to Amazon RDS
+- Benefits
+  - Easy to administer
+  - AWS Management Console
+  - CLI
+  - API Calls
+  - Access in minutes
+  - No infrastructure provisioning
+  - No installing
+  - No maintaining
+  - Highly scalable
+  - Offload read traffic
+  - Available and durable
+    - Highly reliable infrastructure
+    - Multi AZ synchronously replicates standby
+    - Automated backups
+    - DB snapshots
+    - Host replacement
+  - Fast
+    - Provision in a fre minutes
+    - 2 SSD storage options
+  - Aurora 1/10 cost
+  - Secure
+    - Control network access
+    - VPC
+    - Connect to existing IT infrastructure
+    - Encryption at rest
+    - Encryption in transit
+
+### Availability and Durability
+
+- Automated backups on by default
+- Saved securely in S3
+- User-specified retention period
+- Point-in-time recovery
+- Any second up to last 5 minutes
+- Snapshots
+  - User-initiated backups
+  - Stored in S3
+- Host replacement
+  - Hardware failure
+- Multi AZ
+  - Enhanced durability and availability
+  - Primary instance - backup synchronously replicated
+  - Automatic rollover in the event of problem
+
+### Lower Admin Burden / Performance
+
+- Easy to use
+- Choose DB engine
+- Storage capacity
+- CPU
+- Memory
+- 3 instance classes
+  - Standard
+  - Memory-optimized
+  - Burstable
+- Pre-configured with appropriate parameters and settings
+- Granular control and fine tuning
+- Engine configuration
+- Automatic software patches
+- Best practice guidance
+- Analyze configuration and usage metrics
+  - Enginge versions
+  - Storage
+  - Instance types
+  - Networking
+  - Can view and accept recommendations or dismiss
+- Performance
+  - 3 storage types
+    - GP2 - SSD
+      - Broad range
+    - IP1 - Provisioned IOPS - SSD
+      - Fast
+      - I/O intensive workloads
+    - Standarf
+      - Magnetic storage bor backwards compatability
+
+### Manageability and Cost Effectiveness
+
+- Monitoring and metrics
+  - CloudWatch - no additional charge
+  - AWS Management console - Key metrics
+    - Compute
+    - Memory
+    - Storage capacity
+    - I/O Activity
+    - Instance connections
+- Enhanced monitoring - over 50 metrics
+- Performance insights - tuning and monitoring tool
+- Event notification
+  - SNS - text or email
+- Management Console APIs
+- Governance - Amazon Config
+  - Compliance
+  - Security
+- Cost-effectiveness
+  - No up front commitment
+  - Pay monthly for what you use (per instance)
+  - Reserved instances - 1/3 year - significant discount
+  - Stop and start
+    - Dev/Test
+
+### Scalability
+
+- Push button compute scaling
+  - Vertical 32 cpus / 244 GB rab
+- Easy storage scaling
+  - 64 TB
+- On the fly with 0 down time
+- Read replicas
+  - Enhanced performance
+  - Durability
+  - Asynchronous copies
+  - Promoted to primary for disaster recovery
+- Aurora
+  - Scale out read and write
+  - Multi-master clusters
+  - High Availability and durability
+  - Continuous availability
+  - Any can take over work of a failed instance
+
+### Security
+
+- Network isolation
+- VPC
+- Isolate in virtual network
+- Private subnet
+- No direct public internet routes
+- Security groups - Instance level
+- NACLs subnet
+- IPsec VPN connects to on-premesis storage
+- IAM
+- Control actions users and groups can take on DB
+- Tag resources
+- Control actions on groups by tag
+- IAM rules
+  - Developers to Dev
+  - Admins to production
+- Encryption at rest and in transit
+- KMS
+  - Customer master keys
+- Transparent data encryption TDE
+- AWS CloudHSM
+  - Generate, store, manage TDE master encryption keys
+- Transit
+  - SSL
+  - TLS
+  - Encrypt connection
+
+- [x] Launch MySQL RDS Instance
+- [x] Make highly-available across multiple AZs
+- [x] Enable RDS BAckup
+- [x] Create read replica using db.t3.xlarge instance
+
+---
+
+## NoSQL Database
+
+- DyanmoDB
+- NoSQL
+- No schema
+- Autoscale
+- Single digit ms latency
+- Metadata
+- 
