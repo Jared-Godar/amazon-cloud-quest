@@ -1181,8 +1181,160 @@ Control+C
 
 cat efs-1-setup.log [Press Enter Key]
 
-10. Congratulations! You have successfully mounted an EFS file system to two EC2 instances in separate AZs.
-11. Go to the next step.
+```
 
-Note: In this step, you created a data directory, then mounted your Amazon EFS file system to the data directory. You added additional entries to the existing log file and then viewed them.
+---
+
+## Core Security - IAM
+
+- IAM account access
+- Console, CLI, or developer tools
+
+![l9](images/l9.png)
+
+- IAM to create a SupportEngineers group with limited permissions
+- IAM user group created
+- Read-only access policy for EC2 and RDS
+- IAM users added to group
+- Inherit permissions
+
+### Security and Compliance Overview
+
+- AWS Cloud Security
+- Benefits
+  - Scale Securely
+  - Secure Data Centers
+  - Secure Networks
+- Automate security
+  - reduce human error
+  - Integrated solutions
+- Privacy
+  - All data encrypted at physical layer before leaving facility
+  - Service to Service TLS
+  - Fine-grained identity and access controlls
+- Compliance
+  - Third-party validation
+  - Meet standards
+    - Finance
+    - Retail
+    - Healthcare
+    - Approved for TS loads
+    - AWS partner
+- Security Permissions
+  - Permissions
+  - Identities
+  - Infrastructure protection
+  - Data protection
+- Logging and monitoring
+  - Auditing
+  - Testing
+  - Event management
+- Respond and remediate
+  - Root cause analysis
+
+### Shared Responsibility Model
+
+![model](images/mod.png)
+
+- Security in the cloud - customer
+  - Guest OS
+  - Patches
+  - Configuration of firewall
+- Security of the cloud - AWS
+  - Hardware
+  - Compliance
+  - Infrastructure
+  - Facilities
+- Change based on services collected
+- EC2 - IaaS
+  - Customer must perform security configuration & Management
+  - Updates and patches
+  - Networking and firewalls
+  - Encryption
+  - AWS handles infrastructure and underlying hardware
+- Lambda
+  - Security of CODE
+  - IAM
+  - Code libraries
+
+### IAM Overview
+
+- Manage access to AWS services and resources securely
+- User
+- Group - collection of users
+- Controlls who is authenticated
+- Security credentials
+- Cannot access any resources by default until granted
+- Permissions policy
+- Roles delegate access
+  - Temporary access
+- Included in account free of charge
+- Fine-grained access control
+- Add specific conditions
+  - Time of day
+  - IP
+  - MFA
+  - SSL
+- Analyze access across environment
+- Principle of least privileges
+- INtegrate with corporate directory via Identity federation
+- Can use Microsoft identity management
+- Or, any other SAML 2.0 protocol
+- AWS APIs for CLI
+
+### Manage Permissions
+
+- Granted to entities
+  - Users
+  - Federated users
+  - Groups
+  - Roles
+- Policies
+  - Version statements
+  - SID
+  - effect - allow/deny
+  - Principal - entity
+  - Action - read/write/change, ets
+  - Resources - which AWS resources
+  - Conditions - specific S3 buckets for specific IP range
+  - Visual Editor
+  - JSON
+
+### Manage IAM Roles
+
+- Role
+  - Many to one
+  - Identity with permission policies
+  - No long-term credentials
+  - Temporary credentials for role session
+- Isolating development from production environment
+  - Provide access from across multiple accounts
+
+### Access Analysis
+
+- IAM Access Analyzer
+  - Comprehensive findings
+  - Evaluates access paths
+  - Continuously monitors for new and updated paths
+  - KMS / SWL / Lambda
+- Service last accessed data
+- Service last accessed by organizational units and accounts
+- Saves time analyzing resources policies
+- Quickly analyse thousands of policies per second
+- Continuous monitoring
+- Create IAM Access Analyzer for account
+- Review findings
+- Take action
+
+### Plan
+
+- [ ] Create SupportEngineers group
+- [ ] Attach a policy allowing read-only access to EC2
+- [ ] Verify access
+- [ ] Grant read-only access to RDS
+
+```text
+
+https://025533140871.signin.aws.amazon.com/console
+
 ```
