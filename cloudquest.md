@@ -1338,3 +1338,30 @@ cat efs-1-setup.log [Press Enter Key]
 https://025533140871.signin.aws.amazon.com/console
 
 ```
+
+---
+
+## Auto-healing and scaling applications
+
+- Auto-scaling groups
+- Setup launch templates
+- Scale up or down on-demand
+- Schedule instances
+
+![l10](images/l10.png)
+
+- EC2 Autoscaling helps ensure you have the correct number of instances available to handle the load on your application
+- Specify max and min in each autoscaling group
+- Specify desired capacity
+- Schedules scaling for predictable load changes
+- Dynamic scaling for changing demand
+- CloudWatch Alarm - CUP utilization > 70%
+- Dynamic scaling policy based on cloudwatch metrics
+
+### Plan II
+
+- [ ] Create EC2 template from existing instance
+- [ ] Create AutoScaling Group 2-4 instances
+- [ ] Assign CPU utilization metric and schedule autoscaling
+- [ ] Configure AutoScaling Policy to scale down to 0 resources at 1 AM UTC daily
+
