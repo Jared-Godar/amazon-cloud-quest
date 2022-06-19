@@ -1365,3 +1365,203 @@ https://025533140871.signin.aws.amazon.com/console
 - [ ] Assign CPU utilization metric and schedule autoscaling
 - [ ] Configure AutoScaling Policy to scale down to 0 resources at 1 AM UTC daily
 
+---
+
+## Highly Available Web Applications
+
+- Auto Scaling group across multiple AZs
+- Elastic load Balancer to distribute network traffic
+
+![l11](images/l11.png)
+
+- Classic web architecture
+- Route 53 provides DNS services to simplify domain management
+- CloudFront used to deliver static and dynamic content
+  - Cache frequently accessed content
+  - Decrease latency
+- S3 stores static assets
+  - Images
+  - Videos
+- Elastic Load Balancer used to spread traffic across multiple AZs
+  - EC2 auto-scaling groups deployed for redundancy
+- Auto Scaling service creates groups of servers that grow or shrink in capacity depending on demand
+  - Words directly with CloudWatch for metrics and with Elastic Load Balancing to add and remove hosts for load distribution
+- Ie, over 80% CUP utilization, additional web server deployed and added to load balancer
+
+### Highly-available Web Applications
+
+- Natural disasters, hardware failure, malicious security events
+- Degrade system performance or complete failure
+- Outages cause customer dissatisfaction
+- AWS can mitigate effects with cloud architecture principles
+- Highly available
+  - Design for failure
+  - Fault tolerance
+  - Introduce redundancy
+  - Spread over multiple regions / AZs
+  - Decrease probability of overlapping incidents
+- Embrace elasticity and automation
+- CloudWatch
+  - Measure and monitor resources
+- Auto Scaling Groups
+  - Scale in/out dynamically
+- Autohealing
+  - Provision new service
+- Loosely couple components
+  - Don't use tightly coupled components
+  - Less likely to have domino effect of failures
+- SNS / SQS
+- Become stateless
+  - State is not held on service, but by the user or other services
+  - No interruption in service if server fails
+- Use parallelism
+  - Don't use monolithic services
+  - Bottlenecks
+  - Small, independent, parallell microservices better
+  - Scale more granularly
+  - Decrease changes failure of one component breaks everything
+- Security as a forethought
+  - All layers
+  - Best practices
+  - Governance
+  - Compliance
+  - Least privilege
+
+### ELB Overview
+
+- Elastic Load Balancing
+- Automatically distributes incoming traffic across multiple targets
+  - EC2
+  - Containers
+  - IPs
+  - Lambdas
+  - Virtual Applications
+- Across multi regions / AZs
+- Specify one or more listener
+  - Checks for connect requests
+  - Connects to target groups
+  - Routes traffic to healthy targets
+- Load balancer can handle encryption / decryption
+- Types
+  - Application Load Balancer
+    - Application level 7
+    - Http / https / gRPC
+    - Microservices / containers
+  - Network Load Balancer
+    - Layer 4
+    - TCP, UDP, TLS
+    - Low-latency
+    - Static IP
+    - One elastic IP per subnet
+  - Gateway
+    - Layer 3 gateway
+    - Layer 4 load balancing
+    - 3rd party virtual networking appliances
+    - Firewalls, deep packet inspection
+    - Transparent to source and destination
+  - Classic
+    - Layer 4 & 7
+    - TCP, SSL, TLS, HTTP, HTTPS
+    - EC2 Classic network
+
+### ELB Benefits
+
+- High availability and elasticity
+- Auto distribute traffic
+- Single or multi-AZ
+- High fault tolerance
+- Capacity added or removed based on usage
+- Fully-managed service
+- Security
+  - VPC
+  - Integrated certificate management
+  - Authentication
+  - SSL/TLS
+  - WAF
+  - Protect from bad actors
+  - S2N / Guardian - open source
+- Feature breadth
+  - Containers
+  - Rule based routing
+  - Ingress controller
+  - native HTTP endpoint for calling lambda functions
+  - One gateway for routing traffic
+- Robust monitoring and visibility
+  - Cloudwatch
+    - Metrics
+    - Logging
+    - Request Tracing
+- Compliance
+  - Service Level Agreements (SLAs)
+- Integration
+  - EC2
+  - ECS
+  - EKS
+  - AWS Global Accelerator
+  - CloudFormation
+  - Billing
+
+### ELB Features
+
+- High availability and health checks
+- Distribute traffic across EC2 instances
+- Runs health checks on targets
+- Pings / attempts connections periodically
+- Improved insights
+  - Health Check Improvements
+  - New metrics
+- Security
+  - VPC
+  - Security Groups
+  - Internet facing or internal
+- High throughput
+  - Millions of requests per second
+- Sticky Sessions
+  - Defined at target group level
+- Delete Protection
+- Operational Monitoring and logging
+  - CouldWatch
+    - Request counts
+    - Latency
+    - Error types and counts
+  - CloudTrail
+    - Monitors API calls
+
+### CouldWatch Overview
+
+- Monitoring and observability service
+- Built for
+  - Dev OPS
+  - Developers
+  - Site reliability engineers
+  - IT managers
+- Data and Insights
+  - Respond eo performance changes
+  - Operational health
+- Collects
+  - Logs
+  - Metrics
+- Observability on a single platform across applications and infrastructures
+- Identify anomalous events
+- Works across platforms
+- Works in AWS and on-premises
+- Detailed metrics with one-second granularity
+- Can used in hybrid deployments
+- Improve operational performance and resource optimization
+- Can trigger EC2 autoscaling
+- Terminate instance to reduce billing overages
+- 15 months of past data stores
+- Logs insights - only pay for queries run
+
+### Plan III
+
+- [ ] Create Application Load Balancer (ALB)
+- [ ] Configure autoscaling group and connect it to the ALB
+- [ ] Configure a health check endpoint
+- [ ] Configure auto scaling group to include EC2 instance in a third AZ
+
+```tect
+
+TravelAgencyWebServers-1-1478443448.us-east-1.elb.amazonaws.com
+
+```
