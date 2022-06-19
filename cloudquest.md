@@ -1032,3 +1032,157 @@ dynamodb query \
 - [ ] Create a new user item with a unique ID
 - [ ] Add new attribute named rating (Number)
 
+---
+
+## File systems in the cloud - EFS
+
+- Image server connects to local clientmanagement application in three branches
+- Each server stores images of all clients. Custom application synch data across three sites, but inconsistent
+- Centralize storage and scale automatically
+- **EFS** SErverless, set and forget, elastic file system
+- Share file data without provisioning or managing storage
+- PB-scale. Grows and shrinks automatically as you add or remove files
+- 11x9s durability
+- Redundant storage across multiple AZs by default for standard storage
+- Designed to sustain concurrent device failures by quickly detecting and repairing any lost redundancy
+
+### Architecture
+
+![EFS_lab](images/l8.png)
+
+- Three web servers distributed across separate AZs
+- Share same unstructured data
+  - PHP, config, plugins, images
+- EFS 
+  - Shared File system
+  - Share file data without provisioning or managing servers
+  - Automatically grow or shrink as you add or remove files
+  - Eliminates the need for capacity management
+  - Servers access shared data in EFS using mount targets in each AZ
+  - Applications oni each server wil view each mounted file system as a local path 
+
+### EFS Overview
+
+- Simple, scalable, fully managed, elastic Network File System
+- No deploying patching or maintaining needed
+- NFS v4.1
+- Massively parallel shared access t thousands of EC2 instances
+- IOPS with consistent low latency
+- Highly available and highly durable
+- Across multi - AZs
+- AWS DirectConnect or VPN to on premesis servers
+- Lift and shift AWS applications
+- Web serving
+- Content management
+- Big data analytics
+- Application development sna testing
+- Media and entertainment
+- Database backups
+- EFS - Linux
+- Amazon FSx for Windows File Server
+- Amason FSx for Lustre - compute intensive workloads
+
+### EFS Benefits
+
+- POSIX-compliance shared storage
+- Portable Operating System Interface (POSTIX)
+- NFSv4 protocol
+- Scalable
+- Throughput, IOPS and low latency
+- Burstable to higher throughput
+- Elastically and dynamically scale
+- Fully-managed service
+- COnsole, CLI, SKD
+- Pay for what you use. No minimum commitments or up front fess
+- ERS Lifecycle management
+- Security and compliance
+  - Control VPC Security Group
+  - IAM Policies
+  - EFS access points
+  - Application-specific directories and permissions
+  - Encryption at rest and in transit
+  - Meet regulatory needs
+
+### EFS Features
+
+- Storage classes and Lifecycle management
+- Standard
+  - Frequently accessed files
+- Infrequent access (EFS IA)
+- Lifecycle management will automatically migrate files
+- $0.08 / Gb MOnth
+- Performance models
+  - General Purpose
+  - Max IO
+- Throughput modes
+  - Bursting
+    - Scales with size
+  - Provisioned
+    - Higher dedicated throughput, configured intdependently of storage size
+- Encryption
+  - At Rest
+    - Encryption keys
+  - In Transit
+    - TLS
+- Containers and serverless file storage
+  - ECS, EKS, Fargate, Lambda access to same files
+
+### EFS Data Transfer & Backup
+
+- AWS Data Synch
+- Managed data transfer service
+- Simplifies, automates, accelerates
+  - S3 NFS
+  - Automates scaling, validating transfer
+  - One time 
+  - Ongoing Periodic synch
+- AWS Backup
+- Fully managed backup service
+- Centrally manages
+- Automatic backups
+- Centrally confcure and audit
+- Set reptnetion policies
+- Log and monitor
+
+
+### Plan
+
+- [ ] COnfigure and deploy an Amazon Elastic File System
+- [ ] Mount EFS in two EC2 instances
+- [ ] Mount an EFS endpoint to the third EC2 instance
+- [ ] Test if files are accessible from the EC2 instance
+
+```txt
+
+sudo yum install -y amazon-efs-utils
+
+mkdir data
+
+ls
+
+cd data
+
+sudo mount -t efs -o tls fs-01ab7686505821d62:/ data
+
+
+sudo mount -t efs -o tls fs-01ab7686505821d62:/ data
+
+sudo bash -c "cat >> efs-1-setup.log" [Press Enter Key]
+
+7. Type: 
+
+efs-1 mounted in site B [Press Enter Key]
+
+8. Type:
+
+Control+C
+
+9. Type: 
+
+cat efs-1-setup.log [Press Enter Key]
+
+10. Congratulations! You have successfully mounted an EFS file system to two EC2 instances in separate AZs.
+11. Go to the next step.
+
+Note: In this step, you created a data directory, then mounted your Amazon EFS file system to the data directory. You added additional entries to the existing log file and then viewed them.
+```
