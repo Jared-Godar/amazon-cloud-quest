@@ -1565,3 +1565,126 @@ https://025533140871.signin.aws.amazon.com/console
 TravelAgencyWebServers-1-1478443448.us-east-1.elb.amazonaws.com
 
 ```
+
+---
+
+## Connecting VPCs
+
+- Separate VPCs for Marketing, Development, and Finance
+- All departments depend on getting reports from Finance
+- VPC peering
+  - Make connection between VPCs to route traffic using secure IP address
+
+![l12](images/l12.png)
+
+- Use multiple Amazon VPCs
+- Central VPC (Finance) contains resources to be shared with other VPCs (marketing & Deleloper)
+- Create two VPC peering connections
+  - Network connection between two VPCs
+  - Private IPv4 or 6 addresses
+  - Route tables for each VPC point to the peering connection to access CIDR block allocated
+
+### VPC Peering Connections
+
+- Networking connection between 2 VPCs
+- Route via private IPv4/6 connections
+- Can connect and communicate as if they are on same network
+- Can communicate across accounts and across regions
+- Simple, cost-effective way to share information and facilitate transfer
+  - Redundancy
+  - File sharing network
+- Uses existing infrastructure
+  - Stays on AWS backbone
+  - Never reaches open internet
+- Acceptor / receptor
+  - Requestor sends peering request
+  - Acceptor VPC cannot have an overlapping CIDR block
+  - Acceptor accepts peering request
+  - Owner of each VPC must manually add route to route tables for IP address range
+  - Update Security Group Rules to assure traffic is not restricted
+  - Non-transitive
+    - Must be directly peered to each other
+
+### VPC Concepts II
+
+- Classless Inter-DOmain Routing (CIDR) block
+  - /16 - 65,536 addresses (-5 reserved by amazon for internal uses)
+  - /24 - 251 addresses
+  - Can assign secondary CIDR
+  - Local addresses
+    - Private
+    - Can't reach over the internet
+  - 10.0.0
+- VPC has main route table by default
+- Custom route tables
+  - Each route in a table specifies a destination and a target
+- Public
+  - Connect to internet
+- Private
+  - Won't connect to internet, no Internet Gateway
+
+### VPC Internet Connectivity
+
+- Internet gateway
+  - Horizontally scaled
+  - Redundant
+  - Highly available
+  - IPv4/6
+- Elastic IP - static, public IPv4
+- NACL / Security Groups must allow this traffic
+- Network Address Translation (NAT) Gateway
+  - Must associate Elastic IP Address
+  - Update Route Table
+  - Not supported for IPv6
+    - Use Egress-only Internet Gateway instead of NAT
+
+### VPC Security II
+
+- NACLs
+  - Network Access Controll List
+  - Firewall at subnet level
+  - Allows all outbound and inbound traffic by default
+  - Custom NACL
+    - Denies all until rules are added
+    - Stateless
+    - Explicit rules for inbound and outbound
+    - Numbered rules
+    - Evaluated in order
+    - As soon as a match, evaluation ends
+- Security Group
+  - Virtual firewall at instance level
+  - Default allows all outbound, allows all inbound
+  - Stateful
+  - New group - allow-only rules
+
+### VPC Overview
+
+- Private cloud within AWS cloud
+- Logically isolated selection
+- Virtual network
+- Tied to AWS account
+- Comes with default VPC
+- Complete control over virtual network environment
+- FIrst, assign range of private IP addresses
+- IPv4/6
+- IPv4 by default
+- Use own IP prefixes
+- Spans all AZs in region
+- Can use up to 4 subnets in multiple AZs
+- 5 VPCs per region by default per account
+- Benefits
+  - Easily create via AWS Management Console
+  - Customizable
+    - Public Facing subnet for Web
+    - Private-facing backend and databases
+    - Can be an extension of your data center
+  - Secure
+    - NACL
+    - Security Groups
+    - S3 - restrict access
+
+### Plan IV
+
+- [ ] Configure VPC peering between marketing and finance
+- [ ] Configure VPC peering between Developer and Finance
+
